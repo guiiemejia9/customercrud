@@ -1,0 +1,37 @@
+@extends('layouts.app')
+
+
+@section('content')
+
+    <form class="w-50 mx-auto mt-5 pt-5" action="{{ route('customer-create') }}" method="POST">
+        @csrf
+        <h3 class="text-center my-1">Registro Clientes</h3>
+        @include('messeges.messages')
+
+
+        <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text" class="form-control {{$errors->has('name')? 'is-invalid':''}}" name="name" id="name"
+                   value="{{isset($customer->name)?$customer->name:old('name') }}">
+        </div>
+
+        <div class="form-group">
+            <label for="adress">Direccion</label>
+            <input type="text" class="form-control {{$errors->has('address')? 'is-invalid':''}}" name="adress" id="adress"
+                   value="{{isset($customer->adress)?$customer->adress:old('adress') }}" >
+        </div>
+
+
+        <div class="form-group">
+            <label for="phone_number">Numero de Telefono</label>
+            <input type="number" class="form-control {{$errors->has('phone_number')? 'is-invalid':''}}" name="phone_number" id="phone_number"
+                   value="{{isset($customer->phone_number)?$customer->phone_number:old('phone_number') }}">
+        </div>
+
+
+
+        <button type="submit" class="btn btn-primary">Registrar</button>
+    </form>
+
+
+@endsection

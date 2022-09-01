@@ -2,75 +2,47 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Http\Requests\createcustomerrequest;
-use App\Http\Requests\updatecustomerrequest;
 use App\Models\Customer;
-use Illuminate\Support\Facades\DB;
-use Session;
+use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-
     public function index()
     {
-        $customers = Customer::all();
-
-        return view('customer.read', compact('customers'));
-
-
+        $customers = Customer::all(['id','name','address','phone_number']);
+        return response()->json($customers);
     }
     public function create()
     {
-
-
-        return view("customer.create" );
+        //
     }
-
-    public function store(createcustomerrequest $request)
+    public function store(Request $request)
     {
-        $data = $request->all();
-
-        Customer::create([
-
-            'name' => $data['name'],
-            'adress' => $data['adress'],
-            'phone_number' => $data['phone_number'],
-
-
+        $customer = Customer::create($request->post());
+        return response()->json([           
+            'customer'=>$customer
         ]);
-        Session::flash('save','Se ha registrado correctamente');
-        return redirect()->route('customer-visualize')->with('success', 'Registro realizado exitosamente');
     }
-
-    public function delete($id)
+    public function show(Customer $customer)
     {
-        Customer::find($id)->delete();
-        Session::flash('delete','Se ha eliminado correctamente');
-        return redirect()->route('customer-visualize');
-
+        return response()->json($customer);
     }
-    public function edit($id)
+    public function edit(Customer $customer)
     {
-        $customer = Customer::findOrFail($id);
-
-
-
-        return view('Customer.edit', compact('customer'));
-
+        //
     }
-
-    public function update(updatecustomerrequest $request, $id)
+    public function update(Request $request, Customer $customer)
     {
-        $customer = Customer::findOrFail($id);
-        $customer->name = $request->name;
-        $customer->adress = $request->adress;
-        $customer->phone_number = $request->phone_number;
-
-
-        $customer->save();
-        Session::flash('update','Se ha actualizado correctamente');
-        return redirect()->route('customer-visualize');
+        $customer->fill($request->post())->save();
+        return response()->json([            
+            'customer'=>$customer
+        ]);
     }
-
+    public function destroy(Customer $customer)
+    {
+        $customer->delete();
+        return response()->json([
+            'mensaje'=>'¡Registro eliminado correctamente!'
+        ]);
+    }
 }

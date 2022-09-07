@@ -16,6 +16,23 @@ class CustomerController extends Controller
     {
         //
     }
+    public function deleteCustomer($id){
+        $customer= $this->getCustomer($id);
+        $customer->delete();
+        return $customer;
+    }
+    public function getCustomer($id)
+    {
+        $customer = Customer::find($id);
+        return $customer;
+    }
+
+    public function editCustomer($id, Request $request){
+        $customer = $this->getCustomer($id);
+        $customer->fill($request->all())->save();
+        return $customer;
+    }
+
     public function store(Request $request)
     {
         $customer = Customer::create($request->post());

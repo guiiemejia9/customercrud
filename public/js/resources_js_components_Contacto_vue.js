@@ -64,14 +64,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render),
 /* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm._m(0)
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -81,13 +81,13 @@ var staticRenderFns = [
           _c("h1", [
             _vm._v("Componente "),
             _c("span", { staticClass: "badge bg-secondary" }, [
-              _vm._v("CONTACTO")
-            ])
-          ])
-        ])
-      ])
+              _vm._v("CONTACTO"),
+            ]),
+          ]),
+        ]),
+      ]),
     ])
-  }
+  },
 ]
 render._withStripped = true
 

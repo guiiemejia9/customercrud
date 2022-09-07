@@ -1,12 +1,12 @@
 <template>
     <div class="row">
         <div class="col-12 mb-2">
-            <router-link :to='{name:"crearCustomer"}' class="btn btn-success"><i class="fas fa-plus-circle"></i></router-link>
+            <router-link :to='{name:"crearCustomer"}' class="btn btn-success">Nuevo Cliente<i class="fas fa-plus-circle"></i></router-link>
         </div>
         <div class="col-12">             
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead class="bg-primary text-white">
+                    <div class="table-responsive" >
+                        <table class="table table-bordered" >
+                            <thead class=" text-white" style="background-color: #3B68AA;">
                                 <tr>
                                     <th>ID</th>
                                     <th>Nombre</th>

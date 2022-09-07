@@ -14,4 +14,9 @@ use App\Http\Controllers\CustomerController;
 //de esta forma nos genera todas las rutas
 Route::resource('customer',App\Http\Controllers\CustomerController::class);
 
+route::get('getCustomer',[\App\Http\Controllers\CustomerController::class, 'index'])->name('api-getAll');
+Route::delete('deleteCustomer/{id}', [\App\Http\Controllers\CustomerController::class, 'deleteCustomer'])->name('api-delete');
+Route::post('saveCustomer', [App\Http\Controllers\CustomerController::class, 'store'])->name('api-saveCustomer');
+Route::put('editCustomer/{id}', [App\Http\Controllers\CustomerController::class, 'editCustomer'])->name('api-editCustomer');
+
 //Route::resource('customer', CustomerController::class);
